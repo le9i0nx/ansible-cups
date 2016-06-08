@@ -1,0 +1,8 @@
+---
+
+- name: cups restart
+  service:
+    name:  cups
+    state: restarted
+
+## vim: foldmethod=marker:tabstop=2:shiftwidth=2:softtabstop=2

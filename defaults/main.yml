@@ -1,0 +1,29 @@
+---
+# .. envvar:: cups__set_config
+#
+# Configuration for ``cups``.
+cups__set_config:
+  - '--remote-admin'
+  - '--remote-any'
+  - '--share-printers'
+  - '--user-cancel-any'
+
+# Enable execution of ``le9i0nx.cups`` role dependencies. This variable can be
+# used in playbooks to disable hardcoded dependencies during transition to
+# playbook-based ones.
+cups__dependencies_ferm: True
+
+
+# .. envvar:: cups__ferm_dependent_rules
+#
+# Configuration for ``iptables`` firewall managed by ``ferm``.
+cups__ferm_dependent_rules:
+
+  - type: 'accept'
+    dport: [ 'ipp' ]
+    protocol: [ 'tcp','udp' ]
+    role: 'le9i0nx.cups'
+    name: 'tcp'
+    accept_any: True
+
+## vim: foldmethod=marker:tabstop=2:shiftwidth=2:softtabstop=2

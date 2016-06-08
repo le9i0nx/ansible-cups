@@ -1,0 +1,16 @@
+---
+
+- name: install required cups
+  apt:
+    name: '{{ item }}'
+    state: 'present'
+    install_recommends: False
+  with_flattened:
+    - 'cups'
+
+- name: set config cups
+  shell: cupsctl {{item}}
+  with_items: '{{ cups__set_config }}'
+  notify: [ 'cups restart' ]
+
+## vim: foldmethod=marker:tabstop=2:shiftwidth=2:softtabstop=2
